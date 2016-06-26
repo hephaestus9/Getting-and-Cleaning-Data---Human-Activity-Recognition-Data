@@ -15,6 +15,7 @@ features$V1 = NULL
 activity_labels$V1 = NULL
 
 # bring data in
+print("Importing data.")
 x_train = read.table("train\\x_train.txt")
 y_train = read.table("train\\y_train.txt")
 names(y_train) = "activities"
@@ -28,6 +29,7 @@ subject_test = read.table("test\\subject_test.txt")
 names(subject_test) = "subject"
 
 # clean up
+print("Compiling data, and cleaning up.")
 x_names = features[,1]
 names(x_train) = x_names
 names(x_test) = x_names
@@ -47,6 +49,7 @@ for (i in 1:nrow(data)) {
 remove(i, activity_labels)
 
 # get columns we want
+print("Reducing data.")
 mean_data = data[ , which(names(data) %like% "-mean")]
 std_data = data[ , which(names(data) %like% "-std")]
 my_data = cbind(mean_data, std_data, data$activities, data$subject)
@@ -56,6 +59,7 @@ colnames(my_data)[80] = "activities"
 remove(mean_data, std_data)
 
 # get averages per activity per subject
+print("Getting averages of data, per activity per subject.")
 mean_data = data.frame()
 for (i in unique(my_data$subject)){
   for (j in unique(my_data$activities)){
@@ -76,4 +80,8 @@ remove(i, j, k)
 # comment this out to work with original data,
 # or data as it is progressively filtered and manipulated
 remove(org_compiled_data, data, my_data)
+
+#write dataframe to file
+print("Writing data to mean_data.df.")
+write.table(mean_data, "mean_data.df")
 
