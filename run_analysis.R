@@ -82,6 +82,6 @@ remove(i, j, k)
 remove(org_compiled_data, data, my_data)
 
 #write dataframe to file
-print("Writing data to mean_data.df.")
-write.table(mean_data, "mean_data.df")
+print("Writing data to mean_data.txt.")
+write.table(mean_data, "mean_data.txt", row.name=FALSE)
 
