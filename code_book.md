@@ -24,3 +24,5 @@ columns
 
 The script will also generate a file called "mean_data.df" which is a copy of the 'mean_data' dataframe, however the float values are shortened.
 
+For an explination of the columns see either the readme.md or the 'features_info.txt' files.
+
